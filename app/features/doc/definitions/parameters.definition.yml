@@ -7,6 +7,7 @@ components:
       schema:
         type: integer
         format: int32
+        example: 0
     limitParam:
       name: limit
       in: query
@@ -14,9 +15,11 @@ components:
       schema:
         type: integer
         format: int32
+        example: 100
     langParam:
       name: x-site-lang
       in: header
       description: site language
       schema:
         type: string
+        example: en

@@ -22,7 +22,7 @@ const router = express.Router()
  *       200:
  *         $ref: '#/components/responses/SampleList'
  */
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
   res.json(controller.list())
 })
 
@@ -42,7 +42,7 @@ router.get('/', async (req, res) => {
  *       200:
  *         $ref: '#/components/responses/SampleList'
  */
-router.post('/', async (req, res) => {
+router.post('/', (req, res) => {
   res.json(controller.create())
 })
 
@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
  *       200:
  *         $ref: '#/components/responses/SampleItem'
  */
-router.get('/:id', async (req, res) => {
+router.get('/:id', (req, res) => {
   const { id } = req.params
   res.json(controller.get(id))
 })
@@ -85,7 +85,7 @@ router.get('/:id', async (req, res) => {
  *       200:
  *         $ref: '#/components/responses/SampleItem'
  */
-router.put('/:id', async (req, res) => {
+router.put('/:id', (req, res) => {
   const { id } = req.params
   res.json(controller.update(id))
 })
@@ -106,7 +106,7 @@ router.put('/:id', async (req, res) => {
  *       200:
  *         $ref: '#/components/responses/ItemDeleted'
  */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', (req, res) => {
   const { id } = req.params
   res.json(controller.remove(id))
 })

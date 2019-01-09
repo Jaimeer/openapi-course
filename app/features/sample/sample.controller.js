@@ -9,14 +9,16 @@ const item = {
   count: 0,
 }
 
-function list() {}
-
-function create() {
+function list() {
   const items = []
   items.push(item)
   items.push(item)
   items.push(item)
   return { status: true, data: items }
+}
+
+function create() {
+  return { status: true, data: item }
 }
 
 function get(id) {

@@ -11,7 +11,7 @@ function getDefinition() {
     },
     servers: [
       {
-        url: '/1',
+        url: '/',
         description: 'Development server',
       },
       {
