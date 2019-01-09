@@ -1,13 +1,40 @@
 'use strict'
-function get() {
-  return { method: 'GET' }
+
+const item = {
+  name: 'my name',
+  description: 'my name',
+  type: 'type01',
+  endDate: new Date(),
+  percentage: 0,
+  count: 0,
 }
 
+function list() {}
+
 function create() {
-  return { method: 'POST' }
+  const items = []
+  items.push(item)
+  items.push(item)
+  items.push(item)
+  return { status: true, data: items }
+}
+
+function get(id) {
+  return { status: true, data: item }
+}
+
+function update(id) {
+  return { status: true, data: item }
+}
+
+function remove(id) {
+  return { status: true, data: { deleted: true } }
 }
 
 module.exports = {
-  get,
+  list,
   create,
+  get,
+  update,
+  remove,
 }

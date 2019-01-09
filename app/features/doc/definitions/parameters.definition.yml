@@ -1,0 +1,22 @@
+components:
+  parameters:
+    skipParam:
+      name: skip
+      in: query
+      description: number of items to skip
+      schema:
+        type: integer
+        format: int32
+    limitParam:
+      name: limit
+      in: query
+      description: max records to return
+      schema:
+        type: integer
+        format: int32
+    langParam:
+      name: x-site-lang
+      in: header
+      description: site language
+      schema:
+        type: string

@@ -1,0 +1,19 @@
+components:
+  responses:
+    ItemDeleted:
+      description: Item deleted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                description: Response status
+                type: boolean
+                example: true
+              data:
+                type: object
+                properties:
+                  deleted:
+                    type: boolean
+                    example: true

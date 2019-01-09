@@ -2,22 +2,35 @@
 const swaggerJSDoc = require('swagger-jsdoc')
 const packageJson = require('../../../package.json')
 
-async function getDefinition() {
+function getDefinition() {
   const swaggerDefinition = {
-    openapi: '3.0.0',
+    openapi: '3.0.2',
     info: {
       title: packageJson.description,
       version: packageJson.version,
     },
-    servers: [{ url: '/' }],
+    servers: [
+      {
+        url: '/1',
+        description: 'Development server',
+      },
+      {
+        url: 'https://staging.my-server.com/',
+        description: 'Staging server',
+      },
+      {
+        url: 'https://api.my-server.com/',
+        description: 'Production server',
+      },
+    ],
   }
 
   const docOptions = {
     swaggerDefinition,
     apis: [
-      './app/features/doc/definitions/*.yml',
+      './app/features/doc/definitions/*.definition.yml',
       './app/features/*/*.definition.yml',
-      './app/features/*/*.route.js',
+      './app/features/*/*.router.js',
     ],
   }
   const swaggerSpec = swaggerJSDoc(docOptions)

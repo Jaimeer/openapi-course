@@ -1,0 +1,133 @@
+components:
+  parameters:
+    sampleId:
+      name: sampleId
+      description: Sample Identifier
+      in: path
+      required: true
+      schema:
+        type: string
+        example: xxxxx-xxxxx-xxxxx
+
+  schemas:
+    SamplePublic:
+      type: object
+      properties:
+        name:
+          type: string
+          example: My sample name
+        description:
+          type: string
+          example: My sample description
+        type:
+          type: string
+          example: type01
+          enum:
+            - type01
+            - type02
+            - type03
+        endDate:
+          type: string
+          format: date-time
+        percentage:
+          type: integer,
+          format: int32,
+          minimum: 0
+          maximum: 100
+        count:
+          type: integer,
+          format: int32,
+          minimum: 0
+
+    SampleCreate:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: My sample name
+        type:
+          type: string
+          example: type01
+          enum:
+            - type01
+            - type02
+            - type03
+
+    SampleUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: My sample name
+        description:
+          type: string
+          example: My sample description
+        type:
+          type: string
+          example: type01
+          enum:
+            - type01
+            - type02
+            - type03
+        endDate:
+          type: string
+          format: date-time
+        percentage:
+          type: integer,
+          format: int32,
+          minimum: 0
+          maximum: 100
+        count:
+          type: integer,
+          format: int32,
+          minimum: 0
+
+  requestBodies:
+    SampleCreate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SampleCreate'
+      description: New sample object
+      required: true
+
+    SampleUpdate:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SampleUpdate'
+      description: Update sample object
+      required: true
+
+  responses:
+    SampleList:
+      description: Return Sample List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                description: Response status
+                type: boolean
+                example: true
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SamplePublic'
+
+    SampleItem:
+      description: Return Sample Item
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                description: Response status
+                type: boolean
+                example: true
+              data:
+                $ref: '#/components/schemas/SamplePublic'
