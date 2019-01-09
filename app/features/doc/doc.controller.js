@@ -10,16 +10,6 @@ async function getDefinition() {
       version: packageJson.version,
     },
     servers: [{ url: '/' }],
-    components: {
-      securitySchemes: {
-        ApiKeyAuth: {
-          type: 'apiKey',
-          in: 'header',
-          name: 'authorization',
-          description: 'API JWT Token',
-        },
-      },
-    },
   }
 
   const docOptions = {
