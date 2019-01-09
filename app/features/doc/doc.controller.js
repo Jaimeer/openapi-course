@@ -9,7 +9,7 @@ async function getDefinition() {
       title: packageJson.description,
       version: packageJson.version,
     },
-    servers: [{ url: '/v1' }],
+    servers: [{ url: '/' }],
     components: {
       securitySchemes: {
         ApiKeyAuth: {
@@ -25,7 +25,7 @@ async function getDefinition() {
   const docOptions = {
     swaggerDefinition,
     apis: [
-      './app/features/doc/definitions/v1/*.yml',
+      './app/features/doc/definitions/*.yml',
       './app/features/*/*.definition.yml',
       './app/features/*/*.route.js',
     ],
