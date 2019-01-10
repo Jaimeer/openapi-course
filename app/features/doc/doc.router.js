@@ -11,6 +11,7 @@ const swaggerSpecs = DocController.getDefinition()
 router.get('/api.json', (req, res) => {
   res.json(swaggerSpecs)
 })
+
 router.get('/api-ui', (req, res) => {
   const file = 'swagger-ui.html'
   res.sendFile(path.join(`${__dirname}/html/${file}`))

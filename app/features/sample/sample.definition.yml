@@ -34,10 +34,12 @@ components:
           format: int32,
           minimum: 0
           maximum: 100
+          example: 40
         count:
           type: integer,
           format: int32,
           minimum: 0
+          example: 10
 
     SampleCreate:
       type: object
@@ -54,6 +56,9 @@ components:
             - type01
             - type02
             - type03
+        endDate:
+          type: string
+          format: date-time
 
     SampleUpdate:
       type: object
