@@ -10,81 +10,46 @@ components:
         example: xxxxx-xxxxx-xxxxx
 
   schemas:
-    SamplePublic:
-      type: object
-      properties:
-        name:
-          type: string
-          example: My sample name
-        description:
-          type: string
-          example: My sample description
-        type:
-          type: string
-          example: type01
-          enum:
-            - type01
-            - type02
-            - type03
-        endDate:
-          type: string
-          format: date-time
-        percentage:
-          type: integer,
-          format: int32,
-          minimum: 0
-          maximum: 100
-          example: 40
-        count:
-          type: integer,
-          format: int32,
-          minimum: 0
-          example: 10
-
-    labels:
-      type: object
-      properties:
-        label1:
-          type: string
-          example: label1
-        label2:
-          type: string
-          example: label2
-
-    texts:
-      type: object
-      properties:
-        text1:
-          type: string
-          example: text1
-        text2:
-          type: string
-          example: text2
-
-    SampleCreate:
+    subItem:
       type: object
       required:
-        - name
+        - subItemTypeType
+        - common
       properties:
-        name:
+        subItemTypeType:
           type: string
-          example: My sample name
-        type:
-          type: string
-          example: type01
           enum:
-            - type01
-            - type02
-            - type03
-        endDate:
+            - labels
+            - texts
+        common:
           type: string
-          format: date-time
-        subItem:
-          oneOf:
-            - $ref: '#/components/schemas/labels'
-            - $ref: '#/components/schemas/texts'
+          example: common
 
-    SampleUpdate:
+    Labels:
+      allOf:
+        - $ref: '#/components/schemas/subItem'
+        - type: object
+          properties:
+            label1:
+              type: string
+              example: label1
+            label2:
+              type: string
+              example: label2
+
+    Texts:
+      allOf:
+        - $ref: '#/components/schemas/subItem'
+        - type: object
+          properties:
+            texts1:
+              type: string
+              example: texts1
+            texts2:
+              type: string
+              example: texts2
+
+    SampleMinSchema:
       type: object
       properties:
         name:
@@ -93,25 +58,67 @@ components:
         description:
           type: string
           example: My sample description
-        type:
-          type: string
-          example: type01
-          enum:
-            - type01
-            - type02
-            - type03
-        endDate:
-          type: string
-          format: date-time
-        percentage:
-          type: integer,
-          format: int32,
-          minimum: 0
-          maximum: 100
-        count:
-          type: integer,
-          format: int32,
-          minimum: 0
+
+    SampleSchema:
+      allOf:
+        - $ref: '#/components/schemas/SampleMinSchema'
+        - type: object
+          properties:
+            id:
+              type: string
+              readOnly: true
+              example: xxxx-xxxx-xxxx
+            type:
+              type: string
+              example: type01
+              enum:
+                - type01
+                - type02
+                - type03
+            onlyForBody:
+              type: string
+              writeOnly: true
+              example: my only request variable
+            endDate:
+              type: string
+              format: date-time
+            percentage:
+              type: integer,
+              format: int32,
+              minimum: 0
+              maximum: 100
+              example: 40
+            count:
+              type: integer,
+              format: int32,
+              minimum: 0
+              example: 1000
+            subItem:
+              oneOf:
+                - $ref: '#/components/schemas/Labels'
+                - $ref: '#/components/schemas/Texts'
+            subItemDisc:
+              oneOf:
+                - $ref: '#/components/schemas/Labels'
+                - $ref: '#/components/schemas/Texts'
+              discriminator:
+                propertyName: subItemTypeType
+                mapping:
+                  labels: '#/components/schemas/Labels'
+                  texts: '#/components/schemas/Texts'
+
+    SamplePublic:
+      $ref: '#/components/schemas/SampleSchema'
+
+    SampleCreate:
+      allOf:
+        - $ref: '#/components/schemas/SampleMinSchema'
+        - required:
+            - name
+            - description
+
+    SampleUpdate:
+      $ref: '#/components/schemas/SampleSchema'
 
   requestBodies:
     SampleCreate:

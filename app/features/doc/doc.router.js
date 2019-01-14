@@ -20,6 +20,6 @@ router.get('/api-ui', (req, res) => {
 const uiOptions = {
   customCss: '.swagger-ui .topbar { display: none }  .wrapper { word-break: break-all }',
 }
-router.use('/api-ui-2', swaggerUi.serve, swaggerUi.setup(swaggerSpecs, uiOptions))
+router.use('/api-ui-swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpecs, uiOptions))
 
 module.exports = router

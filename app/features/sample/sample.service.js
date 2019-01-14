@@ -8,14 +8,20 @@ function getItem(subItemType) {
     endDate: new Date(),
     percentage: 0,
     count: 0,
-    subItem: {},
+    subItem: { subItemType, common: 'common' },
   }
   switch (subItemType) {
     case 'labels':
-      item.subItem = { label1: 'label1', label2: 'label2' }
+      item.subItem = {
+        ...item.subItem,
+        ...{ label1: 'label1', label2: 'label2' },
+      }
       break
     case 'texts':
-      item.subItem = { text1: 'text1', text2: 'text2' }
+      item.subItem = {
+        ...item.subItem,
+        ...{ text1: 'text1', text2: 'text2' },
+      }
       break
   }
   return item
