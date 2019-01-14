@@ -143,27 +143,23 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              status:
-                description: Response status
-                type: boolean
-                example: true
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SamplePublic'
+            allOf:
+              - $ref: '#/components/schemas/BaseResponse'
+              - type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SamplePublic'
 
     SampleItem:
       description: Return Sample Item
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              status:
-                description: Response status
-                type: boolean
-                example: true
-              data:
-                $ref: '#/components/schemas/SamplePublic'
+            allOf:
+              - $ref: '#/components/schemas/BaseResponse'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SamplePublic'

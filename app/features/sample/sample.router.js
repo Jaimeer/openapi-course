@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
  *         $ref: '#/components/requestBodies/SampleCreate'
  *     responses:
  *       200:
- *         $ref: '#/components/responses/SampleList'
+ *         $ref: '#/components/responses/SampleItem'
  */
 router.post('/', (req, res) => {
   res.json(controller.create(req, res))

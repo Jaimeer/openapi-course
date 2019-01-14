@@ -1,0 +1,9 @@
+components:
+  schemas:
+    BaseResponse:
+      type: object
+      properties:
+        status:
+          description: Response status
+          type: boolean
+          example: true
