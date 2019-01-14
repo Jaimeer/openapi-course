@@ -1,5 +1,5 @@
 'use strict'
-const service = require('./sample.service')
+const service = require('./myItem.service')
 
 function list(req, res) {
   const items = service.list()

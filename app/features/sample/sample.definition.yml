@@ -41,6 +41,26 @@ components:
           minimum: 0
           example: 10
 
+    labels:
+      type: object
+      properties:
+        label1:
+          type: string
+          example: label1
+        label2:
+          type: string
+          example: label2
+
+    texts:
+      type: object
+      properties:
+        text1:
+          type: string
+          example: text1
+        text2:
+          type: string
+          example: text2
+
     SampleCreate:
       type: object
       required:
@@ -59,6 +79,10 @@ components:
         endDate:
           type: string
           format: date-time
+        subItem:
+          oneOf:
+            - $ref: '#/components/schemas/labels'
+            - $ref: '#/components/schemas/texts'
 
     SampleUpdate:
       type: object

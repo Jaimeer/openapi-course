@@ -23,7 +23,7 @@ const router = express.Router()
  *         $ref: '#/components/responses/SampleList'
  */
 router.get('/', (req, res) => {
-  res.json(controller.list())
+  res.json(controller.list(req, res))
 })
 
 /**
@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
  *         $ref: '#/components/responses/SampleList'
  */
 router.post('/', (req, res) => {
-  res.json(controller.create())
+  res.json(controller.create(req, res))
 })
 
 /**
@@ -63,8 +63,7 @@ router.post('/', (req, res) => {
  *         $ref: '#/components/responses/SampleItem'
  */
 router.get('/:id', (req, res) => {
-  const { id } = req.params
-  res.json(controller.get(id))
+  res.json(controller.get(req, res))
 })
 
 /**
@@ -86,8 +85,7 @@ router.get('/:id', (req, res) => {
  *         $ref: '#/components/responses/SampleItem'
  */
 router.put('/:id', (req, res) => {
-  const { id } = req.params
-  res.json(controller.update(id))
+  res.json(controller.update(req, res))
 })
 
 /**
@@ -107,8 +105,7 @@ router.put('/:id', (req, res) => {
  *         $ref: '#/components/responses/ItemDeleted'
  */
 router.delete('/:id', (req, res) => {
-  const { id } = req.params
-  res.json(controller.remove(id))
+  res.json(controller.remove(req, res))
 })
 
 module.exports = router
