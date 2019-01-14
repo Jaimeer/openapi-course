@@ -1,19 +1,39 @@
 components:
+  schemas:
+    Deleted:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+          example: true
+
+    Deprecated:
+      type: object
+      properties:
+        deprecated:
+          type: boolean
+          example: true
+
   responses:
     ItemDeleted:
       description: Item deleted
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              status:
-                description: Response status
-                type: boolean
-                example: true
-              data:
-                type: object
+            allOf:
+              - $ref: '#/components/schemas/BaseResponse'
+              - type: object
                 properties:
-                  deleted:
-                    type: boolean
-                    example: true
+                  data:
+                    $ref: '#/components/schemas/Deleted'
+    Deprecated:
+      description: Item deleted
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/BaseResponse'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Deprecated'

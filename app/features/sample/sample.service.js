@@ -52,10 +52,15 @@ function remove({ id }) {
   return { deleted: true }
 }
 
+function removeOld({ id }) {
+  return { deprecated: true }
+}
+
 module.exports = {
   list,
   create,
   get,
   update,
   remove,
+  removeOld,
 }
