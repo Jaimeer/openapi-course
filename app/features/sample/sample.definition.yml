@@ -58,6 +58,10 @@ components:
         description:
           type: string
           example: My sample description
+        onlyForBody:
+          type: string
+          writeOnly: true
+          example: my only request variable
 
     SampleSchema:
       allOf:
@@ -75,10 +79,6 @@ components:
                 - type01
                 - type02
                 - type03
-            onlyForBody:
-              type: string
-              writeOnly: true
-              example: my only request variable
             endDate:
               type: string
               format: date-time
@@ -110,9 +110,16 @@ components:
     SamplePublic:
       $ref: '#/components/schemas/SampleSchema'
 
-    SampleCreate:
+    SampleCreateMin:
       allOf:
         - $ref: '#/components/schemas/SampleMinSchema'
+        - required:
+            - name
+            - description
+
+    SampleCreate:
+      allOf:
+        - $ref: '#/components/schemas/SampleSchema'
         - required:
             - name
             - description
