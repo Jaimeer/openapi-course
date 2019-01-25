@@ -14,7 +14,7 @@ function list() {
   return items
 }
 
-function create({ id }) {
+function create() {
   return ITEM
 }
 
@@ -25,7 +25,9 @@ function get({ id }) {
 }
 
 function update({ id }) {
-  return ITEM
+  const item = clone(ITEM)
+  item.id = id
+  return item
 }
 
 function remove({ id }) {

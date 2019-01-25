@@ -3,6 +3,7 @@
 module.exports = function(myItemService) {
   const operations = {
     GET,
+    POST,
   }
 
   function GET(req, res, next) {
@@ -21,23 +22,34 @@ module.exports = function(myItemService) {
         description: 'A list of myItems.',
         content: {
           'application/json': {
-            schema: {
-              type: 'array',
-              items: {
-                type: 'object',
-                properties: {
-                  id: { description: 'MyItem Id', type: 'string' },
-                  code: { description: 'MyItem code', type: 'string' },
-                },
-              },
-            },
+            schema: { type: 'array', items: { $ref: '#/components/schemas/myItemSchema' } },
           },
         },
       },
-      default: {
-        description: 'An error occurred',
-        content: { 'application/json': { schema: { type: 'object' } } },
+      400: { $ref: '#/components/responses/error' },
+    },
+  }
+
+  function POST(req, res, next) {
+    // eslint-disable-next-line no-console
+    console.log('POST myItem')
+    res.status(200).json(myItemService.create())
+  }
+
+  POST.apiDoc = {
+    summary: 'createMyItems',
+    description: 'Create new myItem.',
+    tags: ['myItems'],
+    parameters: [],
+    requestBody: {
+      content: { 'application/json': { schema: { $ref: '#/components/schemas/myItemSchema' } } },
+    },
+    responses: {
+      200: {
+        description: 'New myItems.',
+        content: { 'application/json': { schema: { $ref: '#/components/schemas/myItemSchema' } } },
       },
+      400: { $ref: '#/components/responses/error' },
     },
   }
 

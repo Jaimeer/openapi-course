@@ -21,6 +21,23 @@ const apiDoc = {
       description: 'Production server',
     },
   ],
+  components: {
+    schemas: {
+      myItemSchema: {
+        type: 'object',
+        properties: {
+          id: { description: 'MyItem Id', type: 'string' },
+          code: { description: 'MyItem code', type: 'string' },
+        },
+      },
+    },
+    responses: {
+      error: {
+        description: 'An error occurred',
+        content: { 'application/json': { schema: { type: 'object' } } },
+      },
+    },
+  },
   paths: {},
 }
 

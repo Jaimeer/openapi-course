@@ -28,10 +28,7 @@ module.exports = function() {
         description: 'The requested apiDoc.',
         content: { 'application/json': { schema: { type: 'array', items: { type: 'object' } } } },
       },
-      default: {
-        description: 'The requested apiDoc.',
-        content: { 'application/json': { schema: { type: 'object' } } },
-      },
+      400: { $ref: '#/components/responses/error' },
     },
   }
 
