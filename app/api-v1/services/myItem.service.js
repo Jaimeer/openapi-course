@@ -1,25 +1,31 @@
 'use strict'
+const { clone } = require('lodash')
 
-const item = {}
+const ITEM = {
+  id: 'XXXX',
+  code: 'myCode',
+}
 
 function list() {
   const items = []
-  items.push(item)
-  items.push(item)
-  items.push(item)
+  items.push(ITEM)
+  items.push(ITEM)
+  items.push(ITEM)
   return items
 }
 
-function create({ data }) {
-  return item
+function create({ id }) {
+  return ITEM
 }
 
 function get({ id }) {
+  const item = clone(ITEM)
+  item.id = id
   return item
 }
 
 function update({ id }) {
-  return item
+  return ITEM
 }
 
 function remove({ id }) {
